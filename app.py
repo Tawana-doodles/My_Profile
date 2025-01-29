@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly a pt
+import plotly as pt
 
 # Set page title
 st.set_page_config(page_title="Researcher Profile and STEM Data Explorer", layout="wide")
