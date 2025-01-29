@@ -34,13 +34,13 @@ weather_data = pd.DataFrame({
 })
 
 st.markdown(
-    """,
+    """
     <style>
         .stApp {
             background-color: pink;
         }
     </style>
-    """
+    """,
     unsafe_allow_html=True
 )
 # Sections based on menu selection
