@@ -1,10 +1,9 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import plotly as pt
+import plotly.express as px
 
 # Set page title
-st.set_page_config(page_title="Researcher Profile and STEM Data Explorer", layout="wide")
+st.set_page_config(page_title="Poetry and Science Intersect", layout="wide")
 
 # Sidebar Menu
 st.sidebar.title("Navigation")
@@ -39,8 +38,8 @@ if menu == "Researcher Profile":
     st.sidebar.header("Profile Options")
 
     # Collect basic information
-    name = "Dr. Jane Doe"
-    field = "Astrophysics"
+    name = "Tawana Doodles"
+    field = "Engineering"
     institution = "University of Science"
 
     # Display basic profile information
@@ -90,41 +89,36 @@ elif menu == "STEM Data Explorer":
     if data_option == "Physics Experiments":
         st.write("### Physics Experiment Data")
         st.dataframe(physics_data)
-        # Add widget to filter by Energy levels
-        energy_filter = st.slider("Filter by Energy (MeV)", 0.0, 10.0, (0.0, 10.0))
-        filtered_physics = physics_data[
-            physics_data["Energy (MeV)"].between(energy_filter[0], energy_filter[1])
-        ]
-        st.write(f"Filtered Results for Energy Range {energy_filter}:")
-        st.dataframe(filtered_physics)
+
+        # Interactive Bar Chart
+        st.subheader("Energy Levels of Experiments")
+        fig = px.bar(physics_data, x="Experiment", y="Energy (MeV)", color="Energy (MeV)", 
+                     title="Energy Levels of Different Physics Experiments")
+        st.plotly_chart(fig)
 
     elif data_option == "Astronomy Observations":
         st.write("### Astronomy Observation Data")
         st.dataframe(astronomy_data)
-        # Add widget to filter by Brightness
-        brightness_filter = st.slider("Filter by Brightness (Magnitude)", -15.0, 5.0, (-15.0, 5.0))
-        filtered_astronomy = astronomy_data[
-            astronomy_data["Brightness (Magnitude)"].between(brightness_filter[0], brightness_filter[1])
-        ]
-        st.write(f"Filtered Results for Brightness Range {brightness_filter}:")
-        st.dataframe(filtered_astronomy)
+
+        # Interactive Scatter Plot
+        st.subheader("Brightness of Celestial Objects")
+        fig = px.scatter(astronomy_data, x="Celestial Object", y="Brightness (Magnitude)",
+                         size="Brightness (Magnitude)", color="Celestial Object",
+                         title="Celestial Object Brightness")
+        st.plotly_chart(fig)
 
     elif data_option == "Weather Data":
         st.write("### Weather Data")
         st.dataframe(weather_data)
-        # Add widgets to filter by temperature and humidity
-        temp_filter = st.slider("Filter by Temperature (°C)", -10.0, 40.0, (-10.0, 40.0))
-        humidity_filter = st.slider("Filter by Humidity (%)", 0, 100, (0, 100))
-        filtered_weather = weather_data[
-            weather_data["Temperature (°C)"].between(temp_filter[0], temp_filter[1]) &
-            weather_data["Humidity (%)"].between(humidity_filter[0], humidity_filter[1])
-        ]
-        st.write(f"Filtered Results for Temperature {temp_filter} and Humidity {humidity_filter}:")
-        st.dataframe(filtered_weather)
+
+        # Interactive Line Chart for Temperature Trends
+        st.subheader("Temperature Trends Across Cities")
+        fig = px.line(weather_data, x="Recorded Date", y="Temperature (°C)", color="City",
+                      title="Temperature Changes Over Time")
+        st.plotly_chart(fig)
 
 elif menu == "Contact":
-    # Add a contact section
     st.header("Contact Information")
-    name = "Dr. Jane Doe"
-    email = "jane.doe@example.com"
+    name = "Tawana Doodles"
+    email = "tawana.doodles@example.com"
     st.write(f"You can reach {name} at {email}.")
