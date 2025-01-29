@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+
 # Set page title
 st.set_page_config(page_title="Poetry and Science Intersect", layout="wide")
 
@@ -32,6 +33,16 @@ weather_data = pd.DataFrame({
     "Recorded Date": pd.date_range(start="2024-01-01", periods=5),
 })
 
+st.markdown(
+    """
+    <style>
+        .stApp {
+            background-color: pink;
+        }
+    </style>
+    """
+    unsafe_allow_html=True
+)
 # Sections based on menu selection
 if menu == "Researcher Profile":
     st.title("Researcher Profile")
@@ -101,10 +112,16 @@ elif menu == "STEM Data Explorer":
         st.dataframe(astronomy_data)
 
         # Interactive Scatter Plot
-        st.subheader("Brightness of Celestial Objects")
-        fig = px.bar(astronomy_data, x="Celestial Object", y="Brightness (Magnitude)",
-                         size="Brightness (Magnitude)", color="Celestial Object",
-                         title="Celestial Object Brightness")
+        # Create a bar chart (without 'size')
+        fig = px.bar(
+            astronomy_data, 
+            x="Celestial Object", 
+            y="Brightness (Magnitude)", 
+            title="Brightness of Celestial Objects",
+            color="Celestial Object"  # Optional: Adds color differentiation
+            )
+
+        # Display chart in Streamlit
         st.plotly_chart(fig)
 
     elif data_option == "Weather Data":
