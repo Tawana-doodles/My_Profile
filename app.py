@@ -113,7 +113,7 @@ elif menu == "STEM Data Explorer":
 
         # Interactive Line Chart for Temperature Trends
         st.subheader("Temperature Trends Across Cities")
-        fig = px.line(weather_data, x="Recorded Date", y="Temperature (°C)", color="City",
+        fig = px.line(weather_data, x="Humidity (%)", y="Temperature (°C)", color="City",
                       title="Temperature Changes Over Time")
         st.plotly_chart(fig)
 
