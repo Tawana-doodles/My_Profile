@@ -102,7 +102,7 @@ elif menu == "STEM Data Explorer":
 
         # Interactive Scatter Plot
         st.subheader("Brightness of Celestial Objects")
-        fig = px.scatter(astronomy_data, x="Celestial Object", y="Brightness (Magnitude)",
+        fig = px.bar(astronomy_data, x="Celestial Object", y="Brightness (Magnitude)",
                          size="Brightness (Magnitude)", color="Celestial Object",
                          title="Celestial Object Brightness")
         st.plotly_chart(fig)
