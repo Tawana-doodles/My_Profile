@@ -34,7 +34,7 @@ weather_data = pd.DataFrame({
 })
 
 st.markdown(
-    """
+    """,
     <style>
         .stApp {
             background-color: pink;
